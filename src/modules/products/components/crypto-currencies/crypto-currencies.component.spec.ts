@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CryptoCurrenciesComponent } from "./crypto-currencies.component";
+import { CryptoCurrenciesComponent } from './crypto-currencies.component';
 
-describe("CryptoCurrenciesComponent", () => {
+describe('CryptoCurrenciesComponent', () => {
   let component: CryptoCurrenciesComponent;
   let fixture: ComponentFixture<CryptoCurrenciesComponent>;
 
@@ -18,7 +18,7 @@ describe("CryptoCurrenciesComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
