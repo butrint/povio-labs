@@ -2,9 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+import { reducers, effects } from './store';
+
 import { CryptoCurrenciesService } from './services/crypto-currencies.service';
 
 import { CryptoCurrenciesComponent } from './components/crypto-currencies/crypto-currencies.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { CryptoCurrenciesEffects } from './store/effects/crypto-currencies.effect';
 
 const routes: Routes = [
   {
@@ -15,7 +20,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [CryptoCurrenciesComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('products', reducers),
+    EffectsModule.forFeature(effects)
+  ],
   providers: [CryptoCurrenciesService],
   exports: [RouterModule]
 })
