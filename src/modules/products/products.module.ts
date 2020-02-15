@@ -9,7 +9,7 @@ import { CryptoCurrenciesService } from './services/crypto-currencies.service';
 import { CryptoCurrenciesComponent } from './components/crypto-currencies/crypto-currencies.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { CryptoCurrenciesEffects } from './store/effects/crypto-currencies.effect';
+
 
 const routes: Routes = [
   {

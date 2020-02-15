@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CryptoCurrenciesService } from '../../services/crypto-currencies.service';
+import { Store, select } from '@ngrx/store';
+import * as fromStore from '../../store';
+import { ProductsState } from '../../store';
+import * as CryptoCurrenciesAction from '../../store/actions/crypto-currencies.action';
 
 @Component({
   selector: 'app-crypto-currencies',
@@ -7,13 +10,17 @@ import { CryptoCurrenciesService } from '../../services/crypto-currencies.servic
   styleUrls: ['./crypto-currencies.component.scss']
 })
 export class CryptoCurrenciesComponent implements OnInit {
-  public cryptoCurrencies = [];
+  public cryptoCurrencies$ = this.store.pipe(
+    select(fromStore.getCryptoCurrencies)
+  );
 
-  constructor(private cryptoCurrenciesService: CryptoCurrenciesService) {}
+  constructor(private store: Store<ProductsState>) {}
 
   ngOnInit(): void {
-    this.cryptoCurrenciesService.getAll().subscribe(data => {
-      this.cryptoCurrencies = data;
-    });
+    this.refresh();
+  }
+
+  refresh() {
+    this.store.dispatch(CryptoCurrenciesAction.loadCryptoCurrencies());
   }
 }

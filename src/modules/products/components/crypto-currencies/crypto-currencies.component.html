@@ -1,7 +1,8 @@
+<button (click)="refresh()">Refresh</button>
 <div class="list-group">
   <div
     class="list-group-item list-group-item-action"
-    *ngFor="let cryptoCurrency of cryptoCurrencies"
+    *ngFor="let cryptoCurrency of (cryptoCurrencies$ | async)"
     routerLink="{{cryptoCurrency.id}}"
   >
     <div>
@@ -14,11 +15,11 @@
     </div>
     <div>
       <b>Fiat:</b>
-      {{ cryptoCurrency.quote.USD.price }}
+      {{ cryptoCurrency.fiat.price }}
     </div>
     <div>
       <b>24h:</b>
-      {{ cryptoCurrency.quote.USD.percent_change_24h }}
+      {{ cryptoCurrency.fiat.percent_change_24h }}
     </div>
   </div>
 </div>
