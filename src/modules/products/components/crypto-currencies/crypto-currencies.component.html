@@ -1,1 +1,24 @@
-<p>crypto-currencies works!</p>
+<div class="list-group">
+  <div
+    class="list-group-item list-group-item-action"
+    *ngFor="let cryptoCurrency of cryptoCurrencies"
+    routerLink="{{cryptoCurrency.id}}"
+  >
+    <div>
+      <b>Rank:</b>
+      {{ cryptoCurrency.cmc_rank }}
+    </div>
+    <div>
+      <b>symbol:</b>
+      {{ cryptoCurrency.symbol }}
+    </div>
+    <div>
+      <b>Fiat:</b>
+      {{ cryptoCurrency.quote.USD.price }}
+    </div>
+    <div>
+      <b>24h:</b>
+      {{ cryptoCurrency.quote.USD.percent_change_24h }}
+    </div>
+  </div>
+</div>

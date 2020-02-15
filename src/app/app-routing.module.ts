@@ -3,6 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'crypto-currencies',
+    pathMatch: 'full'
+  },
+  {
     path: 'crypto-currencies',
     loadChildren: () =>
       import('../modules/products/products.module').then(m => m.ProductsModule)

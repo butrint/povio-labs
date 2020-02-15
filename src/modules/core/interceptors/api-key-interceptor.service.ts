@@ -17,7 +17,8 @@ export class ApiKeyInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        CMC_PRO_API_KEY: 'd9e62af2-227f-4590-8a83-b1f0d77a13d3'
+        'X-CMC_PRO_API_KEY': 'd9e62af2-227f-4590-8a83-b1f0d77a13d3',
+        'Content-Type': 'application/json'
       }
     });
 
