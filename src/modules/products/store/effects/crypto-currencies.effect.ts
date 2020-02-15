@@ -12,17 +12,16 @@ export class CryptoCurrenciesEffects {
       ofType(CryptoCurrenciesActions.loadCryptoCurrencies),
       switchMap(() =>
         this.cryptoCurrenciesService.getAll().pipe(
-          map(
-            cryptoCurrencies =>
-              CryptoCurrenciesActions.loadCryptoCurrenciesSuccess({
-                cryptoCurrencies
-              }),
-            catchError(error =>
-              of(
-                CryptoCurrenciesActions.loadCryptoCurrenciesFail({
-                  error
-                })
-              )
+          map(cryptoCurrencies =>
+            CryptoCurrenciesActions.loadCryptoCurrenciesSuccess({
+              cryptoCurrencies
+            })
+          ),
+          catchError(error =>
+            of(
+              CryptoCurrenciesActions.loadCryptoCurrenciesFail({
+                error
+              })
             )
           )
         )
