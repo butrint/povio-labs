@@ -10,6 +10,7 @@ import { CoreModule } from '../modules/core/core.module';
 import { AppComponent } from './app.component';
 import { reducers } from './store';
 import { CustomSerializer } from './store/reducers/custom-route-serializer';
+import { SharedModule } from 'src/modules/shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { CustomSerializer } from './store/reducers/custom-route-serializer';
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer
-    })
+    }),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

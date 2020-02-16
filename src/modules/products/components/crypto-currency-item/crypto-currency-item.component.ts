@@ -5,6 +5,8 @@ import * as fromStore from '../../store';
 import { switchMap, mergeMap, map, tap, take } from 'rxjs/operators';
 import { CryptoCurrency } from '../../models/crypto-currency';
 import { CryptoCurrenciesService } from '../../services/crypto-currencies.service';
+import { SettingsService } from 'src/modules/shared/services/settings.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crypto-currency-item',
@@ -14,14 +16,25 @@ import { CryptoCurrenciesService } from '../../services/crypto-currencies.servic
 export class CryptoCurrencyItemComponent implements OnInit {
   objectKeys = Object.keys;
   cryptoCurrency: CryptoCurrency;
+  fiat: string;
 
   constructor(
     private store: Store<fromStore.ProductsState>,
-    private cryptoCurrenciesService: CryptoCurrenciesService
+    private cryptoCurrenciesService: CryptoCurrenciesService,
+    private settingsService: SettingsService
   ) {}
 
   ngOnInit(): void {
     this.refresh();
+    this.updateFiat();
+    this.settingsService.currentFiat$.subscribe(() => {
+      this.updateFiat();
+      this.refresh();
+    });
+  }
+
+  updateFiat() {
+    this.fiat = this.settingsService.getCurrentFiat();
   }
 
   refresh() {

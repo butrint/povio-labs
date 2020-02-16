@@ -1,0 +1,5 @@
+<select class="form-control select-lg" [(ngModel)]="selected" (change)="onSelectChange()">
+  <option *ngFor="let fiat of fiats" [value]="fiat">
+    {{ fiat }}
+  </option>
+</select>

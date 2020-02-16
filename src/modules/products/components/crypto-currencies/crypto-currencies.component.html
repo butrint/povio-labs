@@ -13,13 +13,13 @@
       <b>symbol:</b>
       {{ cryptoCurrency.symbol }}
     </div>
-    <div>
-      <b>Fiat:</b>
-      {{ cryptoCurrency.quote.USD.price }}
+    <div *ngIf="fiat">
+      <b>{{ fiat }}:</b>
+      {{ cryptoCurrency.quote[fiat].price }}
     </div>
-    <div>
+    <div *ngIf="fiat">
       <b>24h:</b>
-      {{ cryptoCurrency.quote.USD.percent_change_24h }}
+      {{ cryptoCurrency.quote[fiat].percent_change_24h }}
     </div>
   </div>
 </div>
