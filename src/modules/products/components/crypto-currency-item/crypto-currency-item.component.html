@@ -1,0 +1,48 @@
+<button (click)="refresh()">Refresh</button>
+<div class="list-group">
+  <div class="list-group-item list-group-item-action" *ngIf="cryptoCurrency">
+    <div>
+      <b>Rank:</b>
+      {{ cryptoCurrency.cmc_rank }}
+    </div>
+    <div>
+      <b>Name:</b>
+      {{ cryptoCurrency.symbol }}
+    </div>
+    <div>
+      <b>Symbol:</b>
+      {{ cryptoCurrency.symbol }}
+    </div>
+    <div class="border-top my-3"></div>
+    <div *ngFor="let quote of cryptoCurrency.quotes">
+      <div *ngFor="let key of objectKeys(quote)">
+        <h4>{{ key }}</h4>
+        <div>
+          <b>{{ key }} price:</b>
+          {{ quote[key].price }}
+        </div>
+        <div>
+          <b>24h:</b>
+          {{ quote[key].percent_change_24h }}
+        </div>
+        <div *ngIf="key === 'BTC'">
+          <b>1h:</b>
+          {{ quote[key].percent_change_1h }}
+        </div>
+        <div *ngIf="key === 'BTC'">
+          <b>7d:</b>
+          {{ quote[key].percent_change_7d }}
+        </div>
+      </div>
+    </div>
+    <div class="border-top my-3"></div>
+    <div>
+      <b>Avaliable supply:</b>
+      {{ cryptoCurrency.circulating_supply }}
+    </div>
+    <div>
+      <b>Total supply:</b>
+      {{ cryptoCurrency.total_supply }}
+    </div>
+  </div>
+</div>

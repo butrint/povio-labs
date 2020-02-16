@@ -3,13 +3,13 @@ import * as CryptoCurrenciesActions from '../actions/crypto-currencies.action';
 import { CryptoCurrency } from '../../models/crypto-currency';
 
 export interface CryptoCurrencyState {
-  data: CryptoCurrency[];
+  entities: { [id: number]: CryptoCurrency };
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: CryptoCurrencyState = {
-  data: [],
+  entities: {},
   loaded: false,
   loading: false
 };
@@ -28,13 +28,26 @@ const cryptoCurrenciesReducer = createReducer(
   on(
     CryptoCurrenciesActions.loadCryptoCurrenciesSuccess,
     (state, { cryptoCurrencies }) => {
-      const data = cryptoCurrencies;
+      const entities = cryptoCurrencies.reduce(
+        (
+          pEntities: { [id: number]: CryptoCurrency },
+          cryptoCurrency: CryptoCurrency
+        ) => {
+          return {
+            ...pEntities,
+            [cryptoCurrency.id]: cryptoCurrency
+          };
+        },
+        {
+          ...state.entities
+        }
+      );
 
       return {
         ...state,
         loading: false,
         loaded: true,
-        data
+        entities
       };
     }
   )
@@ -51,4 +64,5 @@ export const getCryptoCurrenciesLoading = (state: CryptoCurrencyState) =>
   state.loading;
 export const getCryptoCurrenciesLoaded = (state: CryptoCurrencyState) =>
   state.loaded;
-export const getCryptoCurrencies = (state: CryptoCurrencyState) => state.data;
+export const getCryptoCurrenciesEntities = (state: CryptoCurrencyState) =>
+  state.entities;
