@@ -15,7 +15,7 @@ export class SettingsService {
     this.checkInStorage();
   }
 
-  public checkInStorage() {
+  private checkInStorage() {
     if (localStorage.getItem('fiat')) {
       const fiat = localStorage.getItem('fiat');
       this.setFiat(fiat);

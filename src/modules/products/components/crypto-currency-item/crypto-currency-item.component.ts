@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { ProductsState } from '../../store';
 import * as fromStore from '../../store';
 import { switchMap, mergeMap, map, tap, take } from 'rxjs/operators';
 import { CryptoCurrency } from '../../models/crypto-currency';
 import { CryptoCurrenciesService } from '../../services/crypto-currencies.service';
 import { SettingsService } from 'src/modules/shared/services/settings.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crypto-currency-item',

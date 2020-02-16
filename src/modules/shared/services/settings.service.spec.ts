@@ -13,4 +13,12 @@ describe('SettingsService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('#setFiat should set fiat on local storage and change current fiat', () => {
+    const fiat = 'dummy';
+    service.setFiat(fiat);
+
+    expect(localStorage.getItem('fiat')).toBe(fiat);
+    expect(service.getCurrentFiat()).toBe(fiat);
+  });
 });
